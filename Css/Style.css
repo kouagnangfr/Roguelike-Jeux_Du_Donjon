@@ -1,0 +1,261 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(25, 2em); /* 25 colonnes */
+    grid-template-rows: repeat(15, 2em); /* 15 lignes */
+    grid-gap: 0px; /* Espace entre les cellules de la grille */
+    margin: 2.3% 10%;
+    border : 1px solid red;
+}
+
+.grid-item {
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    font-size: 15px;
+    line-height: 0px;
+    border: 0px solid white;
+}
+
+main
+{
+    display: flex;
+    align-items: center;
+}
+
+#panneau-control
+{
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+    margin-top: 13em;
+    border-radius: 30px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+}
+
+#panneau-control div
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+#panneau-control button
+{
+    height: 2em;
+    width: 5em;
+    font-weight: Bolder;
+    border: none;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+    border-radius : 10px;
+}
+
+
+
+#panneau-control button:hover
+{
+    width: 5.5em;
+    height: 2.5em;
+    border: 1px solid green;
+}
+
+#panneau-control button:focus
+{
+    background-color: green;
+    color: white;
+}
+
+#panneau-control .laterale #Left
+{
+    margin-right: 100px;
+}
+
+#Reinitialiser
+{
+    background-color: red;
+    color: white;
+    font-weight: Bolder;
+    border: none;
+    box-shadow: 2px 2px 8px white;
+    border-radius : 10px;
+    
+}
+
+#Reinitialiser:focus
+{
+    background-color: green;
+    color: white;
+}
+
+#score
+{
+    display: block;
+    font-size: 2em;
+    font-weight: 900;
+    color: black;
+    font-family: cursive;
+}
+
+#gameOver
+{
+    display: none;
+    width: 40vh;
+    height: 40vh;
+    position: absolute;
+    margin-left: 25%;
+    background-color: black;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0 0.1em 2em red;
+}
+
+#gameStart
+{
+    display: none;
+    width: 40vh;
+    height: 40vh;
+    position: absolute;
+    margin-left: 25%;
+    background-color: black;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0 0.1em 2em green;
+}
+
+
+#gameOver h1 
+{
+    font-size: 3em;
+    font-weight: bolder;
+    color: red;
+    font-family: cursive;
+    margin-bottom: 2.5em;
+}
+
+#gameStart h1 
+{
+    font-size: 3em;
+    font-weight: bolder;
+    color: rgb(68, 116, 68);
+    font-family: cursive;
+    margin-bottom: 2.5em;
+}
+
+
+#Button-rejouer 
+{
+    display: block;
+    background-color: rgb(68, 116, 68);
+    font-family: cursive;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+#Button-commencer 
+{
+    display: block;
+    background-color: rgb(68, 116, 68);
+    font-family: cursive;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+#Button-rejouer:hover
+{
+    background-color: green;
+}
+
+#Button-commencer:hover
+{
+    background-color: green;
+}
+
+#Button-quitter 
+{
+    display: block;
+    background-color: rgb(163, 125, 19);
+    font-family: cursive;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+#Button-quitter:hover
+{
+    background-color: red;
+}
+
+.centre
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav
+{
+    display: flex;
+    background-color: black;
+    padding: 1em 0 0.5em 1em;
+    color: white;
+}
+
+nav .sp2
+{
+    display: block;
+    text-align: center;
+    margin-top: 0.2em;
+}
+
+nav button
+{
+    display: block;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+}
+
+
+li
+{
+    list-style: none;
+    margin: 0 2.7em;
+    width: 5em;
+    font-family: cursive;
+    font-weight: 900;
+    font-size: 1em;
+    text-align: center;
+}
+
+#nav-Down
+{
+    display: flex;
+    justify-content: center;
+}
+
+#nav-Up
+{
+    display: flex;
+    justify-content: center;
+}
