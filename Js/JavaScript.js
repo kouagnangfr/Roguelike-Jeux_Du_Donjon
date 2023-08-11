@@ -2,31 +2,65 @@ document.addEventListener("DOMContentLoaded", function ()
 {
     //grille de depart
     var tab =   [   ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','t','s','s','s','m','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','s','s','m','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','m','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','b','s','s','s','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','s','s','s','s','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','m','m','m','s','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','s','s','m','s','m','m','m','s','m','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','t','s','s','s','s','m','m','m','s','s','m','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','s','s','s','m','m','m','m','m','s','s','s','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','b','s','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','m','m','m','m'],
-                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','j','m','m','m'],
+                    ['m','m','p','s','s','s','b','m','m','m','m','m','m','m','t','s','s','s','m','m','m','m','m','m','m'],
+                    ['m','m','m','s','s','s','s','m','m','m','m','m','m','m','s','s','s','s','m','m','m','m','m','m','m'],
+                    ['m','m','m','s','m','m','m','m','m','m','m','m','m','m','m','m','m','s','m','m','m','m','m','m','m'],
+                    ['m','m','s','s','m','m','m','m','m','m','m','m','m','m','m','m','m','s','s','m','m','m','m','m','m'],
+                    ['m','s','s','s','s','s','s','m','m','m','m','m','m','m','s','s','b','s','s','s','m','m','m','m','m'],
+                    ['m','s','s','s','s','s','s','m','m','m','m','m','m','m','s','s','s','s','s','s','m','m','m','m','m'],
+                    ['m','m','m','m','m','m','s','m','m','m','m','m','m','m','s','m','m','m','s','m','m','m','m','m','m'],
+                    ['m','m','m','m','m','m','s','m','m','s','m','s','s','m','s','m','m','m','s','m','m','m','m','m','m'],
+                    ['m','m','m','m','m','m','s','s','t','b','s','s','s','s','s','m','m','m','s','s','m','m','m','m','m'],
+                    ['m','m','m','m','s','m','m','m','m','s','m','s','s','m','m','m','m','m','s','s','s','m','m','m','m'],
+                    ['p','s','s','t','b','s','s','s','s','s','m','s','m','m','m','m','m','m','m','b','s','m','m','m','m'],
+                    ['m','m','m','m','s','m','m','m','s','s','s','s','t','m','m','m','m','m','m','s','s','m','m','m','m'],
+                    ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','t','s','j','m','m','m'],
                     ['m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m','m']   
                 ];
     const tab2 = tab;
     let positionJoueur = [13,21];
-    let positionMonstre1 = [5,16];
-    let positionMonstre2 = [19,19];
-    let nombreMonstres = 2;
     let nombretresors = 2;
     let nombreCoups = 0;
     let score = 0;
-    let temps
-    let time = 0;
+    let temps;
+    let minutes;
+    let seconds;
+    let time = 10;
+    let gestionTouches = true;
+    let timeIspaused = false;
+    let gagner = false;
+    let boutonMenu;
+
+
+    //gestion des actions des boutons
+    document.getElementById("Reinitialiser").addEventListener("click", Reinitialiser);
+    document.getElementById("Button-rejouer").addEventListener("click",Restart);
+    document.getElementById("Button-rejouer2").addEventListener("click",Restart);
+
+    //gestion du jeu avec les touches du clavier
+    document.addEventListener("keydown", function (event) 
+    {
+        if(gestionTouches)
+        {
+            if (event.key === "ArrowUp")
+            {
+                MoveUpPlayer();
+            } 
+            else if (event.key === "ArrowDown")
+            {
+                MoveDownPlayer();
+            } 
+            else if (event.key === "ArrowLeft") 
+            {
+                MoveLeftPlayer();
+            } 
+            else if (event.key === "ArrowRight") 
+            {
+                MoveRightPlayer();
+            }
+        }
+        
+    });
 
     //Creation de la grille de jeu de depart
     function createGrid() 
@@ -36,27 +70,34 @@ document.addEventListener("DOMContentLoaded", function ()
         {
             for (let j = 0; j < tab[i].length; j++) 
             {
-                const gridItem = document.createElement("div");
+                let gridItem = document.createElement("div");
                 gridItem.classList.add("grid-item");
 
-                // Définir la couleur en fonction de la lettre dans le tableau
+                let image = document.createElement("img");
+                image.classList.add("grid-image");
+
+                // Définir la couleur/images en fonction de la lettre dans le tableau
                 switch (tab[i][j]) 
                 {
                     case 'j':
-                        gridItem.style.backgroundColor = "red";
+                        image.src = "../img/mario.png";
                         break;
                     case 's':
                         gridItem.style.backgroundColor = "white";
                         break;
                     case 'b':
-                        gridItem.style.backgroundColor = "green";
+                        image.src = "../img/monster.jpg";
                         break;
                     case 't':
-                        gridItem.style.backgroundColor = "yellow";
+                        image.src = "../img/apple.jpg";
+                        break;
+                    case 'p' :
+                        image.src = "../img/mario2.png";
                         break;
                     default:
-                        gridItem.style.backgroundColor = "black"; 
+                        image.src = "../img/minecraft.png";
                 }
+                gridItem.appendChild(image);
                 gridContainer.appendChild(gridItem);
             }
         }
@@ -65,10 +106,17 @@ document.addEventListener("DOMContentLoaded", function ()
 
     //Temps ecouler
     function UpdateTime() {
-        temps = document.getElementById("time");
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        temps.textContent = "" + minutes + "m " + seconds + " s";
+        if(!timeIspaused)
+        {
+            temps = document.getElementById("time");
+            minutes = Math.floor(time / 60);
+            seconds = time % 60;
+            temps.textContent = "" + minutes + "m " + seconds + " s";
+            if(time > 120)
+            {
+                temps.style.color = "red";
+            }
+        }  
     }
 
     setInterval(function ()
@@ -95,11 +143,15 @@ document.addEventListener("DOMContentLoaded", function ()
         affichageScore.textContent = "" + score;
         const affichageNbCoups = document.getElementById("affichage-shift");
         affichageNbCoups.textContent = "" + nombreCoups;
+        const messageGameOver = document.getElementById("message-GameOver");
+        messageGameOver.textContent = "Vous avez perdue avec un Score de " + score + ", \nRealiser en " + minutes + "min et " + seconds + "s ," + "Vous avez effectuer " + nombreCoups + " deplacements !!\n" + "je suis convaincu que vous pouvez faire mieux !!"; 
+        const messageGameWin = document.getElementById("message-GameWin");
+        messageGameWin.textContent = "Vous avez terminer avec un Score max de " + score + ", \nRealiser en " + minutes + "min et " + seconds + "s, \n" + "Vous avez effectuer " + nombreCoups + " deplacements !!"; 
         UpdateTime();
         
     }
-
     createGrid();
+
 
     //reinitialisation du jeu
     function Reinitialiser()
@@ -107,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function ()
         location.reload();  
     }
 
+    //Recommencer
     function Restart()
     {
         Reinitialiser();
@@ -115,25 +168,57 @@ document.addEventListener("DOMContentLoaded", function ()
         divGameOver.style.display = "none";
     }
 
-    //Partie perdue
+
+    //fonction verifiant si un joueur a gagner la partie
+    function Gagner()
+    {
+        if (score >= 25)  // Vérifiez si le score est supérieur ou égal à 15 car total max = 15
+        {
+            const divGagner = document.getElementById("gameWin");
+            divGagner.style.display = "block";
+            gestionTouches = false; // Désactivation des touches du clavier
+        }
+    }
+
+    function PauseOn() {
+        const divGamePause = document.getElementById("gamePause");
+        divGamePause.style.display = "block";
+        timeIspaused = true;
+        gestionTouches = false; // Désactivation des touches du clavier
+    }
+    
+    function PauseOff() {
+        const divGamePause = document.getElementById("gamePause");
+        divGamePause.style.display = "none";
+        timeIspaused = false;
+        gestionTouches = true; // Réactivativation des touches du clavier
+    }
+
+    //Partie perdue : Lorsque le joueur se fait attraper par le monstre
     function GameOver()
     {
         const divGameOver = document.getElementById("gameOver");
         divGameOver.style.display = "block";
-        clearInterval();
+        timeIspaused = true;
+        gestionTouches = false; //desactivations temporaire des touches du clavier
+        clearInterval();    
     }
+
+    document.getElementById("Button-pause").addEventListener("click", PauseOn);
+    document.getElementById("Button-reprendre").addEventListener("click", PauseOff);
 
     //Deplacement du monstre
     function MoveMonsters() 
     {
+        let tab2 = JSON.parse(JSON.stringify(tab));
         // Pour chaque case verte (représentée par 'b') sur la grille
         for (let i = 0; i < tab.length; i++) {
             for (let j = 0; j < tab[i].length; j++) {
                 if (tab[i][j] === 'b') 
                 {
                     //Verification des directions disponibles
-                    const directionDisponibles = []; 
-                    if (tab[i - 1][j] === 's' || tab[i - 1][j] === 's')
+                    let directionDisponibles = []; 
+                    if (tab[i - 1][j] === 's' || tab[i - 1][j] === 'j')
                     {
                         directionDisponibles.push('up');
                     }
@@ -156,54 +241,54 @@ document.addEventListener("DOMContentLoaded", function ()
                         
                         switch (randomDirection) {
                             case 'up':
-                                if(tab[i - 1][j] === 's')
+                                if(tab2[i - 1][j] === 's')
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i - 1][j] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i - 1][j] = 'b';
                                 }
                                 else if(tab[i - 1][j] === 'j' )
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i - 1][j] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i - 1][j] = 'b';
                                     GameOver();
                                 }
                                 break;
                             case 'down':
-                                if(tab[i + 1][j] === 's')
+                                if(tab2[i + 1][j] === 's')
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i + 1][j] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i + 1][j] = 'b';
                                 }
                                 else if(tab[i + 1][j] === 'j' )
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i + 1][j] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i + 1][j] = 'b';
                                     GameOver();
                                 }
                                 break;
                             case 'left':
-                                if(tab[i][j-1] === 's')
+                                if(tab2[i][j-1] === 's')
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i][j-1] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i][j-1] = 'b';
                                 }
                                 else if(tab[i][j-1] === 'j')
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i][j-1] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i][j-1] = 'b';
                                     GameOver();
                                 }
                                 break;
                             case 'right':
-                                if(tab[i][j+1] === 's')
+                                if(tab2[i][j+1] === 's')
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i][j+1] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i][j+1] = 'b';
                                 }
                                 else if(tab[i][j+1] === 'j')
                                 {
-                                    tab[i][j] = 's';
-                                    tab[i][j+1] = 'b';
+                                    tab2[i][j] = 's';
+                                    tab2[i][j+1] = 'b';
                                     GameOver();
                                 }
                                 break;
@@ -214,6 +299,7 @@ document.addEventListener("DOMContentLoaded", function ()
                 }
             }
         }
+        tab = tab2;
     }
     
 
@@ -238,6 +324,7 @@ document.addEventListener("DOMContentLoaded", function ()
             positionJoueur[0] -= 1;
             score +=1;
             MoveMonsters();
+            Gagner();
             Update();
         }
         else if(tab[positionJoueur[0]-1][positionJoueur[1]] === 'b')
@@ -266,6 +353,7 @@ document.addEventListener("DOMContentLoaded", function ()
             positionJoueur[0] += 1;
             score +=1;
             MoveMonsters();
+            Gagner();
             Update();
         }
         else if(tab[positionJoueur[0]+1][positionJoueur[1]] === 'b')
@@ -294,6 +382,19 @@ document.addEventListener("DOMContentLoaded", function ()
             positionJoueur[1] -= 1;
             score +=1;
             MoveMonsters();
+            Gagner();
+            Update();
+        }
+        else if(tab[positionJoueur[0]][positionJoueur[1]-1] === 'p')
+        {
+            tab[positionJoueur[0]][positionJoueur[1]-1] = 'j';
+            tab[positionJoueur[0]][positionJoueur[1]] = 's';
+            nombreCoups += 1;
+            nombretresors -= 1;
+            positionJoueur[1] -= 1;
+            score +=10;
+            MoveMonsters();
+            Gagner();
             Update();
         }
         else if(tab[positionJoueur[0]][positionJoueur[1]-1] === 'b')
@@ -322,6 +423,7 @@ document.addEventListener("DOMContentLoaded", function ()
             positionJoueur[1] += 1;
             score +=1;
             MoveMonsters();
+            Gagner();
             Update();
         }
         else if(tab[positionJoueur[0]][positionJoueur[1]+1] === 'b')
@@ -330,14 +432,6 @@ document.addEventListener("DOMContentLoaded", function ()
         }
     }
 
-
-    //Gestion des evenements des boutons
-    document.getElementById("Up").addEventListener("click", MoveUpPlayer);
-    document.getElementById("Down").addEventListener("click", MoveDownPlayer);
-    document.getElementById("Left").addEventListener("click", MoveLeftPlayer);
-    document.getElementById("Right").addEventListener("click", MoveRightPlayer);
-    document.getElementById("Reinitialiser").addEventListener("click", Reinitialiser);
-    document.getElementById("Button-rejouer").addEventListener("click",Restart);
 
 
     

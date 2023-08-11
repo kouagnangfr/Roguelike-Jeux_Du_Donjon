@@ -1,13 +1,34 @@
-.grid-container {
+html
+{
+    min-width: 100%;
+}
+
+body
+{
+    background-color: whitesmoke;
+    min-width: 100%;
+}
+
+a
+{
+    text-decoration: none;
+    color: white;
+}
+
+
+.grid-container 
+{
+    background-color: whitesmoke;
     display: grid;
     grid-template-columns: repeat(25, 2em); /* 25 colonnes */
     grid-template-rows: repeat(15, 2em); /* 15 lignes */
     grid-gap: 0px; /* Espace entre les cellules de la grille */
-    margin: 2.3% 10%;
-    border : 1px solid red;
+    margin: 2em auto;
+    border : 5px solid black;
 }
 
-.grid-item {
+.grid-item 
+{
     width: 2em;
     height: 2em;
     text-align: center;
@@ -16,58 +37,19 @@
     border: 0px solid white;
 }
 
+.grid-image
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
 main
 {
     display: flex;
     align-items: center;
-}
-
-#panneau-control
-{
-    border: solid 2px black;
-    display: flex;
-    flex-direction: column;
-    margin-top: 13em;
-    border-radius: 30px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
-}
-
-#panneau-control div
-{
-    display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 0.5em;
-}
-
-#panneau-control button
-{
-    height: 2em;
-    width: 5em;
-    font-weight: Bolder;
-    border: none;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
-    border-radius : 10px;
-}
-
-
-
-#panneau-control button:hover
-{
-    width: 5.5em;
-    height: 2.5em;
-    border: 1px solid green;
-}
-
-#panneau-control button:focus
-{
-    background-color: green;
-    color: white;
-}
-
-#panneau-control .laterale #Left
-{
-    margin-right: 100px;
 }
 
 #Reinitialiser
@@ -99,13 +81,12 @@ main
 #gameOver
 {
     display: none;
-    width: 40vh;
-    height: 40vh;
+    width: 50vh;
+    height: 56vh;
     position: absolute;
-    margin-left: 25%;
     background-color: black;
     color: white;
-    padding: 1.5em;
+    padding: 2em;
     text-align: center;
     border-radius: 30px;
     box-shadow: 0 0.1em 2em red;
@@ -113,11 +94,23 @@ main
 
 #gameStart
 {
-    display: none;
-    width: 40vh;
-    height: 40vh;
+    display: block;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    margin-left: 25%;
+    text-align: center;
+    background-image: url('../Img/roguelike-dungeons.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#gameWin, #gamePause
+{
+    display: none;
+    width: 50vh;
+    height: 56vh;
+    position: absolute;
     background-color: black;
     color: white;
     padding: 1.5em;
@@ -126,27 +119,52 @@ main
     box-shadow: 0 0.1em 2em green;
 }
 
-
-#gameOver h1 
+#gameOver h1
 {
     font-size: 3em;
     font-weight: bolder;
     color: red;
     font-family: cursive;
-    margin-bottom: 2.5em;
+    margin-bottom: 1.5em;
+}
+
+#gamePause h1
+{
+    font-size: 3em;
+    font-weight: bolder;
+    color: green;
+    font-family: cursive;
+    margin-bottom: 2em;
+}
+
+p
+{
+    font-size: 1em;
+    font-weight: 300;
+    font-family: cursive;
+    padding-bottom: 2em;
 }
 
 #gameStart h1 
 {
+    font-size: 5em;
+    font-weight: bolder;
+    color: goldenrod;
+    font-family: cursive;
+    margin-top: 0.5em;
+}
+
+#gameWin h1 
+{
     font-size: 3em;
     font-weight: bolder;
-    color: rgb(68, 116, 68);
+    color: green;
     font-family: cursive;
     margin-bottom: 2.5em;
 }
 
 
-#Button-rejouer 
+.Button-rejouer , #Button-reprendre
 {
     display: block;
     background-color: rgb(68, 116, 68);
@@ -164,26 +182,27 @@ main
 #Button-commencer 
 {
     display: block;
-    background-color: rgb(68, 116, 68);
+    background-color: green;
     font-family: cursive;
     color: white;
-    font-size: 1.2em;
+    font-size: 2em;
     font-weight: 600;
     padding: 10px 30px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    margin-bottom: 1em;
+    margin-top: 65vh;
 }
 
-#Button-rejouer:hover
+.Button-rejouer:hover, #Button-reprendre:hover
 {
     background-color: green;
 }
 
 #Button-commencer:hover
 {
-    background-color: green;
+    background-color: rgb(68, 116, 68);;
+    
 }
 
 #Button-quitter 
@@ -204,6 +223,12 @@ main
 #Button-quitter:hover
 {
     background-color: red;
+}
+
+.rouge
+{
+    color : red;
+    font-size: 1.5em;
 }
 
 .centre
@@ -237,7 +262,7 @@ nav button
 }
 
 
-li
+.liste
 {
     list-style: none;
     margin: 0 2.7em;
@@ -251,11 +276,40 @@ li
 #nav-Down
 {
     display: flex;
+    align-items: center;
     justify-content: center;
+    padding-bottom: 1em;
 }
 
 #nav-Up
 {
     display: flex;
     justify-content: center;
+}
+
+.animation
+{
+    display: flex;
+    min-height: 10vh;
+    min-width: 100%;
+    background-color: white;
+    padding: 0.5em;
+    margin-bottom: 4em;
+}
+
+.bonhome 
+{
+    max-width: 20%;
+    max-height: 15vh;
+    position: relative;
+    animation: vaEtVient 4s linear infinite alternate;
+}
+
+@keyframes vaEtVient {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: calc(100% - 20%); 
+    }
 }

@@ -6,9 +6,58 @@
     <link rel="stylesheet" href="./Css/Reset.css">
     <link rel="stylesheet" href="./Css/Style.css">
     <script src="./Js/JavaScript.js" defer></script>
-    <title>Home</title>
+    <script src="https://kit.fontawesome.com/57f747ccdf.js" crossorigin="anonymous"></script>
+    <title>ROGUELIKE</title>
 </head>
 <body>
+    <header>
+        <nav id="nav-Up">
+            <div class="liste"><Button id="menu-hamburger"><i class="fa-solid fa-bars"></i><span class="sp2">Menu</span></Button></div>
+            <div class="liste"><Button id="Button-pause"><i class="fa-solid fa-pause"></i><span class="sp2">Pause</span></Button></div>
+            <div class="liste"><span class="sp1" >Score</span><span class="sp2" id="affichage-score">0</span></div>
+            <div class="liste"><span class="sp1">Deplacements</span><span class="sp2" id="affichage-shift">0</span></div>
+            <div class="liste"><span class="sp1">Time</span><span class="sp2" id="time">0</span></div>
+            <div class="liste"><span class="sp1">Level</span><span class="sp2">1</span></div>
+        </nav>
+    </header>
+    <main>
+        <div class="grid-container" id="gridContainer"></div>
+        <div id="gameOver">
+            <h1>Game Over</h1>
+            <div class="centre">
+                <P id="message-GameOver">0</P>
+                <p class="rouge">Vous pouvez faire beaucoup mieux !!</p>
+                <button class="Button-rejouer" id="Button-rejouer">Replay :-)</button>
+                <a href="Index.html" id="Button-quitter">Quit :-(</a>
+            </div>
+        </div>
+        
+        <div id="gameWin">
+            <h1> Congratulation </h1>
+            <div class="centre">
+                <P id="message-GameWin">0</P>
+                <p class="rouge">Vous pouvez faire beaucoup mieux !!</p>
+                <button class="Button-rejouer" id="Button-rejouer2">Play again :-)</button>
+            </div>
+        </div>
+        <div id="gamePause">
+            <h1> Pause </h1>
+            <div class="animation">
+                <img src="./Img/mario.png" alt="" class="bonhome">
+            </div>
+            <div class="centre">
+                <button id="Button-reprendre">Reprendre</button>
+            </div>
+        </div>
+    </main>
     
+    
+    <footer>
+        <nav id="nav-Down">
+            <div class="liste"><Button><i class="fa-solid fa-gear"></i><span class="sp2">Settings</span></Button></div>
+            <div class="liste"><Button><i class="fa-solid fa-backward-step"></i><span class="sp2">Back</span></Button></div>
+            <div class="liste"><Button id="Reinitialiser"><i class="fa-solid fa-eraser"></i><span class="sp2">Reset</span></Button></div>
+    </nav>
+    </footer>
 </body>
 </html>
