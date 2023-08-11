@@ -80,25 +80,26 @@ document.addEventListener("DOMContentLoaded", function ()
                 switch (tab[i][j]) 
                 {
                     case 'j':
-                        image.src = "../Img/mario.png";
+                        image.src = "Img/mario.png";
                         break;
                     case 's':
                         gridItem.style.backgroundColor = "white";
                         break;
                     case 'b':
-                        image.src = "../Img/monster.jpg";
+                        image.src = "Img/monster.jpg";
                         break;
                     case 't':
-                        image.src = "../Img/apple.jpg";
+                        image.src = "Img/apple.jpg";
                         break;
                     case 'p' :
-                        image.src = "../Img/mario2.png";
+                        image.src ="Img/mario2.png"
                         break;
                     default:
-                        image.src = "../Img/minecraft.png";
+                        image.src = "Img/minecraft.png";
                 }
-                gridItem.appendChild(image);
+                
                 gridContainer.appendChild(gridItem);
+                gridItem.appendChild(image);
             }
         }
     }
